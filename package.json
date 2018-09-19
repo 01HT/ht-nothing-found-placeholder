@@ -1,0 +1,11 @@
+{
+  "name": "@01ht/ht-nothing-found-placeholder",
+  "version": "1.0.0",
+  "main": "ht-nothing-found-placeholder.js",
+  "repository": "01ht/ht-nothing-found-placeholder",
+  "author": "01HT Ltd",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@polymer/lit-element": "^0.6.1"
+  }
+}
