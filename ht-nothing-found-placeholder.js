@@ -1,116 +1,117 @@
 "use strict";
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 
 class HTNothingFoundPlaceholder extends LitElement {
+  static styles = css`<style>
+    :host {
+      display: block;
+      position:relative;
+      box-sizing:border-box;
+    }
+
+    #main{
+      margin-top: 24px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--secondary-text-color);
+    }
+
+    #sub {
+      margin-top: 8px;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--secondary-text-color);
+    }
+
+    .empty-icon-container{
+      margin:1em auto;
+      text-align:center;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Dosis', sans-serif;
+
+    }
+    .animation-container{
+      position:relative;
+      display:block;
+      text-align: center;
+      height:200px;
+      width:200px;
+      border-bottom: solid 2px var(--secondary-text-color);
+      overflow:hidden;
+      contain: content;
+    }
+    .bounce{
+      display: inline-block;
+      position:absolute;
+      bottom:0;
+      left:50%;
+      width:80px;
+      height:80px;
+      margin-left: -40px;
+      background-size: contain;
+      animation: bounceAnim 1s cubic-bezier(.63,.09,.75,.46) infinite alternate,
+                spinAnim 3s linear infinite;
+    }
+
+    @keyframes bounceAnim{
+      0%, 10% { bottom: 50%; }
+
+      100% { bottom: 0%; }
+    }
+    @keyframes spinAnim{
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .pebble1{
+      position:absolute;
+      top:96%;
+      background-color:var(--secondary-text-color);
+      width:10px;
+      height:10px;
+      border-radius: 20px 20px 0px 0px;
+      animation: pebblesAnim 1s linear infinite;
+    }
+    .pebble2{
+      position:absolute;
+      top:98%;
+      background-color:var(--secondary-text-color);
+      width:5px;
+      height:5px;
+      border-radius: 10px 10px 0px 0px;
+      animation: pebblesAnim 2s linear infinite;
+    }
+    .pebble3{
+      position:absolute;
+      top:98%;
+      background-color:var(--secondary-text-color);
+      width:4px;
+      height:4px;
+      border-radius: 20px 20px 0px 0px;
+      animation: pebblesAnim 3s linear infinite;
+    }
+
+    @keyframes pebblesAnim{
+      0% { right: -20%; }
+      100% { right: 110%; }
+    }
+
+    [hidden] {
+      display:none;
+    }
+  </style>`;
+
   render() {
     const { main, sub } = this;
     return html`
-      <style>
-        :host {
-          display: block;
-          position:relative;
-          box-sizing:border-box;
-        }
-
-        #main{
-          margin-top: 24px;
-          margin-bottom: 8px;
-          line-height: 1.5;
-          font-size: 24px;
-          font-weight: 600;
-          color: var(--secondary-text-color);
-        }
-
-        #sub {
-          margin-top: 8px;
-          font-size: 18px;
-          font-weight: 400;
-          color: var(--secondary-text-color);
-        }
-
-        .empty-icon-container{
-          margin:1em auto;
-          text-align:center;
-          display:flex;
-          flex-direction: column;
-          align-items: center;
-          font-family: 'Dosis', sans-serif;
-
-        }
-        .animation-container{
-          position:relative;
-          display:block;
-          text-align: center;
-          height:200px;
-          width:200px;
-          border-bottom: solid 2px var(--secondary-text-color);
-          overflow:hidden;
-          contain: content;
-        }
-        .bounce{
-          display: inline-block;
-          position:absolute;
-          bottom:0;
-          left:50%;
-          width:80px;
-          height:80px;
-          margin-left: -40px;
-          background-size: contain;
-          animation: bounceAnim 1s cubic-bezier(.63,.09,.75,.46) infinite alternate,
-                    spinAnim 3s linear infinite;
-        }
-
-        @keyframes bounceAnim{
-          0%, 10% { bottom: 50%; }
-
-          100% { bottom: 0%; }
-        }
-        @keyframes spinAnim{
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-
-        .pebble1{
-          position:absolute;
-          top:96%;
-          background-color:var(--secondary-text-color);
-          width:10px;
-          height:10px;
-          border-radius: 20px 20px 0px 0px;
-          animation: pebblesAnim 1s linear infinite;
-        }
-        .pebble2{
-          position:absolute;
-          top:98%;
-          background-color:var(--secondary-text-color);
-          width:5px;
-          height:5px;
-          border-radius: 10px 10px 0px 0px;
-          animation: pebblesAnim 2s linear infinite;
-        }
-        .pebble3{
-          position:absolute;
-          top:98%;
-          background-color:var(--secondary-text-color);
-          width:4px;
-          height:4px;
-          border-radius: 20px 20px 0px 0px;
-          animation: pebblesAnim 3s linear infinite;
-        }
-
-        @keyframes pebblesAnim{
-          0% { right: -20%; }
-          100% { right: 110%; }
-        }
-
-        [hidden] {
-          display:none;
-        }
-      </style>
       <div id="container">
         <div class="empty-icon-container">
           <div class="animation-container">
@@ -300,10 +301,6 @@ class HTNothingFoundPlaceholder extends LitElement {
 `;
   }
 
-  static get is() {
-    return "ht-nothing-found-placeholder";
-  }
-
   static get properties() {
     return {
       main: { type: String },
@@ -312,7 +309,10 @@ class HTNothingFoundPlaceholder extends LitElement {
   }
 }
 
-customElements.define(HTNothingFoundPlaceholder.is, HTNothingFoundPlaceholder);
+customElements.define(
+  "ht-nothing-found-placeholder",
+  HTNothingFoundPlaceholder
+);
 
 /*{ <svg xmlns="http://www.w3.org/2000/svg" xmlns: xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml: space="preserve">
   <g>
