@@ -1,113 +1,123 @@
 "use strict";
 import { LitElement, html, css } from "lit-element";
 
+import { stylesBasicWebcomponents } from "@01ht/ht-theme/styles";
+
 class HTNothingFoundPlaceholder extends LitElement {
-  static styles = css`<style>
-    :host {
-      display: block;
-      position:relative;
-      box-sizing:border-box;
-    }
+  static get styles() {
+    return [
+      stylesBasicWebcomponents,
+      css`
+        #main {
+          margin-top: 24px;
+          margin-bottom: 8px;
+          line-height: 1.5;
+          font-size: 24px;
+          font-weight: 600;
+          color: var(--secondary-text-color);
+        }
 
-    #main{
-      margin-top: 24px;
-      margin-bottom: 8px;
-      line-height: 1.5;
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--secondary-text-color);
-    }
+        #sub {
+          margin-top: 8px;
+          font-size: 18px;
+          font-weight: 400;
+          color: var(--secondary-text-color);
+        }
 
-    #sub {
-      margin-top: 8px;
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--secondary-text-color);
-    }
+        .empty-icon-container {
+          margin: 1em auto;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-family: "Dosis", sans-serif;
+        }
+        .animation-container {
+          position: relative;
+          display: block;
+          text-align: center;
+          height: 200px;
+          width: 200px;
+          border-bottom: solid 2px var(--secondary-text-color);
+          overflow: hidden;
+          contain: content;
+        }
+        .bounce {
+          display: inline-block;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 80px;
+          height: 80px;
+          margin-left: -40px;
+          background-size: contain;
+          animation: bounceAnim 1s cubic-bezier(0.63, 0.09, 0.75, 0.46) infinite
+              alternate,
+            spinAnim 3s linear infinite;
+        }
 
-    .empty-icon-container{
-      margin:1em auto;
-      text-align:center;
-      display:flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: 'Dosis', sans-serif;
+        @keyframes bounceAnim {
+          0%,
+          10% {
+            bottom: 50%;
+          }
 
-    }
-    .animation-container{
-      position:relative;
-      display:block;
-      text-align: center;
-      height:200px;
-      width:200px;
-      border-bottom: solid 2px var(--secondary-text-color);
-      overflow:hidden;
-      contain: content;
-    }
-    .bounce{
-      display: inline-block;
-      position:absolute;
-      bottom:0;
-      left:50%;
-      width:80px;
-      height:80px;
-      margin-left: -40px;
-      background-size: contain;
-      animation: bounceAnim 1s cubic-bezier(.63,.09,.75,.46) infinite alternate,
-                spinAnim 3s linear infinite;
-    }
+          100% {
+            bottom: 0%;
+          }
+        }
+        @keyframes spinAnim {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
 
-    @keyframes bounceAnim{
-      0%, 10% { bottom: 50%; }
+        .pebble1 {
+          position: absolute;
+          top: 96%;
+          background-color: var(--secondary-text-color);
+          width: 10px;
+          height: 10px;
+          border-radius: 20px 20px 0px 0px;
+          animation: pebblesAnim 1s linear infinite;
+        }
+        .pebble2 {
+          position: absolute;
+          top: 98%;
+          background-color: var(--secondary-text-color);
+          width: 5px;
+          height: 5px;
+          border-radius: 10px 10px 0px 0px;
+          animation: pebblesAnim 2s linear infinite;
+        }
+        .pebble3 {
+          position: absolute;
+          top: 98%;
+          background-color: var(--secondary-text-color);
+          width: 4px;
+          height: 4px;
+          border-radius: 20px 20px 0px 0px;
+          animation: pebblesAnim 3s linear infinite;
+        }
 
-      100% { bottom: 0%; }
-    }
-    @keyframes spinAnim{
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
+        @keyframes pebblesAnim {
+          0% {
+            right: -20%;
+          }
+          100% {
+            right: 110%;
+          }
+        }
 
-    .pebble1{
-      position:absolute;
-      top:96%;
-      background-color:var(--secondary-text-color);
-      width:10px;
-      height:10px;
-      border-radius: 20px 20px 0px 0px;
-      animation: pebblesAnim 1s linear infinite;
-    }
-    .pebble2{
-      position:absolute;
-      top:98%;
-      background-color:var(--secondary-text-color);
-      width:5px;
-      height:5px;
-      border-radius: 10px 10px 0px 0px;
-      animation: pebblesAnim 2s linear infinite;
-    }
-    .pebble3{
-      position:absolute;
-      top:98%;
-      background-color:var(--secondary-text-color);
-      width:4px;
-      height:4px;
-      border-radius: 20px 20px 0px 0px;
-      animation: pebblesAnim 3s linear infinite;
-    }
-
-    @keyframes pebblesAnim{
-      0% { right: -20%; }
-      100% { right: 110%; }
-    }
-
-    [hidden] {
-      display:none;
-    }
-  </style>`;
+        [hidden] {
+          display: none;
+        }
+      `
+    ];
+  }
 
   render() {
     const { main, sub } = this;
